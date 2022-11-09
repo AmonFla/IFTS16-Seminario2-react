@@ -6,11 +6,11 @@ function App() {
   return (
     <div >
       <h1>Saludos</h1>
-      <ElementoP texto='Hola Mundo' />
-      <ElementoP texto='Chau Mundo'/>
-      <ElementoP texto=' Ya me fui'/>
-      <ElementoP texto='Hola Mundo de nuevo'/>
-      <ElementoP texto='Hola Mundito'/>
+      {['Hola Muno', 'Chau Mundo', 'Ya me fui'].map((elemento) => { 
+        return (
+          <ElementoP texto={elemento} />
+        );
+      }) }
     </div>
    
   );
