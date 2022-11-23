@@ -1,12 +1,22 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import PostEntries from './Components/PostEntries';
 import PostDetail from './Components/PostDetail';
+import LoginForm from './Components/LoginForm';
+import LoggedUser from './Components/LoggedUser';
 
 function App() {
   const [entrada, setEntrada] = useState(null)
+  const [user, setUser] = useState(null)
     
+  useEffect(() => {
+    const loggedUser = localStorage.getItem('user')
+    if (loggedUser) {
+      setUser(JSON.parse(loggedUser))
+    }
+  }, [])
+  
   return (
     <Container fluid>
       <Row> 
@@ -14,7 +24,11 @@ function App() {
       </Row>
       <Row>
         <Col lg={3} >
-          columna 1
+          {user ?
+            <LoggedUser user={user} setUser={setUser} />
+          :
+            <LoginForm setUser={setUser} />            
+          }
         </Col>
         <Col log={6}>
           {entrada ?
@@ -27,6 +41,9 @@ function App() {
         <Col lg={3} >
           columna 2
         </Col>
+      </Row>
+      <Row>
+        Footer
       </Row>
     </Container>
   );
