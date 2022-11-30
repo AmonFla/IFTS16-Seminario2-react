@@ -1,6 +1,6 @@
 import { Nav } from "react-bootstrap" 
 
-const LoggedUser = ({ user, setUser }) => { 
+const LoggedUser = ({ user, setUser , setVer}) => { 
    
   const logout = () => { 
     localStorage.removeItem('user')
@@ -12,7 +12,7 @@ const LoggedUser = ({ user, setUser }) => {
       <p>Hola:{user.name}</p>
       <Nav className="flex-column">
         <Nav.Item>
-          <Nav.Link>Agregar Entrada</Nav.Link>
+          <Nav.Link onClick={ ()=>setVer('add-entrada')}>Agregar Entrada</Nav.Link>
           <Nav.Link onClick={()=> logout() }>Logout</Nav.Link>
         </Nav.Item>
 

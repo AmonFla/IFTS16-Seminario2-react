@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import servEntrada from "./../services/entradas"
 
 
-function PostEntries({setEntrada }) {
+function PostEntries({setEntrada, setVer }) {
   const [entradas, setEntradas] = useState(null);
 
   useEffect( () => { 
@@ -15,7 +15,7 @@ function PostEntries({setEntrada }) {
       {entradas ?
         entradas.map((entrada) => { 
           return (
-            <PostEntry setEntrada={setEntrada} key={entrada.id} entrada={entrada} />
+            <PostEntry setEntrada={setEntrada} setVer={setVer } key={entrada.id} entrada={entrada} />
           );
         })
         :

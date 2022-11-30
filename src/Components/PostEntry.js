@@ -1,8 +1,13 @@
 function PostEntry(props) { 
+  const setData = (id) => { 
+    props.setEntrada(id)
+    props.setVer('entrada')
+  }
+  
   return (
     <>
       <p>{props.entrada.id}-{props.entrada.titulo}
-        <button onClick={() => props.setEntrada(props.entrada.id)}>ver</button></p>
+        <button onClick={() => setData(props.entrada.id)}>ver</button></p>
     </>
   );
 }

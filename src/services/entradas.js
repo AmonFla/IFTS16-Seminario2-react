@@ -18,5 +18,20 @@ const  getEntrada = async (id) => {
     return null
  }
 
+const saveEntrada = async (datos, token) => { 
+  const response = await axios.post(
+    url,
+    datos,
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  );
+  if(response.status === 200)
+    return response.data;
+  else
+    return null
+}
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getEntradas, getEntrada }
+export default { getEntradas, getEntrada, saveEntrada }

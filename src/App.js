@@ -5,9 +5,11 @@ import PostEntries from './Components/PostEntries';
 import PostDetail from './Components/PostDetail';
 import LoginForm from './Components/LoginForm';
 import LoggedUser from './Components/LoggedUser';
+import AddEntry from './Components/EntradaForm/AddEntry';
 
 function App() {
-  const [entrada, setEntrada] = useState(null)
+  const [ver, setVer] = useState('lista-entradas')
+  const [entrada, setEntrada] = useState('')
   const [user, setUser] = useState(null)
     
   useEffect(() => {
@@ -17,6 +19,18 @@ function App() {
     }
   }, [])
   
+  const view = () => { 
+    switch (ver) {
+      case 'lista-entradas':
+        return <PostEntries setEntrada={setEntrada} setVer={setVer} />
+      case 'entrada':
+        return <PostDetail setEntrada={setEntrada} setVer={setVer} id={entrada} />
+      case 'add-entrada':
+        return <AddEntry user={user} setVer={setVer} />
+      default:
+        return <></>
+    }
+  }
   return (
     <Container fluid>
       <Row> 
@@ -25,17 +39,13 @@ function App() {
       <Row>
         <Col lg={3} >
           {user ?
-            <LoggedUser user={user} setUser={setUser} />
+            <LoggedUser user={user} setUser={setUser} setVer={setVer }/>
           :
             <LoginForm setUser={setUser} />            
           }
         </Col>
         <Col log={6}>
-          {entrada ?
-            <PostDetail setEntrada={setEntrada} id={entrada} />
-            :
-            <PostEntries setEntrada={setEntrada } />
-          }
+          {view() }
           
         </Col>
         <Col lg={3} >
